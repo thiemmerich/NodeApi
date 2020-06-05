@@ -1,14 +1,8 @@
 const { User } = require('../models');
-const jwt = require('jsonwebtoken');
 const generateToken = require('../../config/util').generateToken;
 
 module.exports = {
-    async index(req, res) {
-        const users = await User.findAll({ limit: 10 });
-
-        return res.json(users);
-    },
-
+    
     async show(req, res) {
         const user = await User.findByPk(req.params.id);
 
