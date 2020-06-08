@@ -1,3 +1,5 @@
+const sequelizePaginate = require('sequelize-paginate');
+
 module.exports = (sequelize, DataTypes) => {
     const Product = sequelize.define('Product', {
         nome: DataTypes.STRING,
@@ -8,5 +10,6 @@ module.exports = (sequelize, DataTypes) => {
         preco: DataTypes.DOUBLE
     });
 
+    sequelizePaginate.paginate(Product);
     return Product;
 }

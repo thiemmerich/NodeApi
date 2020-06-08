@@ -13,7 +13,7 @@ routes.delete('/user/:id', validateToken, UserController.delete); //Deletar
 routes.post('/auth', UserController.auth); //Basic authentication
 
 // Rotas de produtos
-routes.get('/product', validateToken, ProductController.index); //Listar todos
-routes.post('/product', validateToken, ProductController.store); //Criar
+routes.get('/product', ProductController.index); //Listar todos
+routes.post('/product', ProductController.store); //Criar
 
 module.exports = routes;
