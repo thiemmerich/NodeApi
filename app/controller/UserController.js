@@ -1,14 +1,8 @@
 const { User } = require('../models');
-const jwt = require('jsonwebtoken');
 const generateToken = require('../../config/util').generateToken;
 
 module.exports = {
-    async index(req, res) {
-        const users = await User.findAll({ limit: 10 });
-
-        return res.json(users);
-    },
-
+    
     async show(req, res) {
         const user = await User.findByPk(req.params.id);
 
@@ -54,10 +48,13 @@ module.exports = {
             if (user != null) {
                 if (password == user.password) {
                     generateToken(req, res, user);                    
+                } else {
+                    return res.status(400).json({ errorMsg: 'Dados invalidos' });
                 }
             }
         }).catch(() => {
             return res.status(400).json({ errorMsg: 'Dados invalidos' });
         });
+        return res.status(400).json({ errorMsg: 'Dados invalidos' });
     }
 };

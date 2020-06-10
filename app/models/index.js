@@ -1,9 +1,10 @@
 const fs = require('fs');
 const path = require('path');
-const Sequelize = require('sequelize');
+const Sequelize = require('sequelize').Sequelize;
 const config = require('../../config/database.js');
 
 const db = {};
+// @ts-ignore
 const sequelize = new Sequelize(config);
 
 fs
