@@ -3,8 +3,8 @@ const { Product } = require('../models');
 module.exports = {
     async index(req, res) {
         const options = {
-            page: 1,
-            paginate: 3
+            page: 2,
+            paginate: 10
         }
         const products = await Product.paginate(options);
 
