@@ -48,6 +48,8 @@ module.exports = {
             if (user != null) {
                 if (password == user.password) {
                     generateToken(req, res, user);                    
+                } else {
+                    return res.status(400).json({ errorMsg: 'Dados invalidos' });
                 }
             }
         }).catch(() => {
