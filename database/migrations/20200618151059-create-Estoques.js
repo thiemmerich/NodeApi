@@ -2,25 +2,21 @@
 
 module.exports = {
   up: (queryInterface, DataTypes) => {
-    return queryInterface.createTable('Stocks', {
-      id: {
+    return queryInterface.createTable('Estoques', {
+      idProduto: {
+        type: DataTypes.STRING,
         allowNull: false,
-        autoIncrement: true,
+        primaryKey: true
+      },
+      tamanho: {
+        type: DataTypes.STRING,
+        allowNull: false,
         primaryKey: true,
+      },
+      quantidade: {
         type: DataTypes.INTEGER,
-      },
-      name: {
         allowNull: false,
-        type: DataTypes.STRING,
-      },
-      email: {
-        allowNull: false,
-        type: DataTypes.STRING,
-        unique: true,
-      },
-      password: {
-        allowNull: false,
-        type: DataTypes.STRING,
+        defaultValue: 0
       },
       createdAt: {
         allowNull: false,
@@ -34,6 +30,6 @@ module.exports = {
   },
 
   down: (queryInterface) => {
-    return queryInterface.dropTable('Stocks');
+    return queryInterface.dropTable('Estoques');
   }
 };
