@@ -11,8 +11,9 @@ module.exports = {
             include: [{
                 model: Product,
                 required: false,
-                association: Estoque.belongsTo(Product),
-                //on: Sequelize.col('product.id')
+                attributes: ['nome','marca'],
+                association: Estoque.belongsTo(Product, {foreignKey : 'idProduto'}),
+                on: Sequelize.col('product.id')
             }],
         }
         const productsEstoque = await Estoque.paginate(options);
