@@ -4,6 +4,7 @@ const validateToken = require('../../config/util').validateToken;
 
 const UserController = require('../controller/UserController');
 const ProductController = require('../controller/ProductController');
+const EstoqueController = require('../controller/EstoqueController');
 
 // Rotas de usuario
 routes.get('/user/:id', validateToken, UserController.show); //Buscar
@@ -15,5 +16,8 @@ routes.post('/auth', UserController.auth); //Basic authentication
 // Rotas de produtos
 routes.get('/product', ProductController.index); //Listar todos
 routes.post('/product', ProductController.store); //Criar
+
+routes.get('/estoque', EstoqueController.index); //Listar todos
+
 
 module.exports = routes;
