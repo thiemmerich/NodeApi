@@ -6,14 +6,13 @@ module.exports = {
     async index(req, res) {
         
         const options = {
-            page: 2,
-            paginate: 10,
+            paginate: 30,
             include: [{
                 model: Product,
-                required: false,
                 attributes: ['nome','marca'],
+                required: true,
                 association: Estoque.belongsTo(Product, {foreignKey : 'idProduto'}),
-                on: Sequelize.col('product.id')
+                //on: Sequelize.col('products.id')
             }],
         }
         const productsEstoque = await Estoque.paginate(options);
