@@ -1,4 +1,5 @@
 const { Product } = require('../models');
+const { Op } = require('sequelize');
 
 module.exports = {
     async index(req, res) {
@@ -30,5 +31,22 @@ module.exports = {
             });
 
         return res.json(product);
+    },
+
+    async searchLike(req, res) {
+        const product = await Product.findAll({
+            where: {
+                nome: {
+                    [Op.like]: '%' + req.params.nome + '%'
+                }
+            }
+        })
+            .then((products) => {
+                return res.json(products);
+            })
+
+            .catch((err) => {
+                return res.status(400).json({ errorMsg: 'Erro ao gravar na base de dados: ' + err });
+            });
     }
 }
