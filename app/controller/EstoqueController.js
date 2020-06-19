@@ -4,20 +4,31 @@ const { Sequelize } = require('sequelize')
 
 module.exports = {
     async index(req, res) {
-        
+
+        let recordsPerPage = parseInt(req.params.recordsPerPage);
+        let pageToLoad = parseInt(req.params.page);
+        let msgError = (isNaN(recordsPerPage) ? 'Registros por pagina=' + recordsPerPage : '')
+            + (isNaN(pageToLoad) ? 'Pagina=' + pageToLoad : '');
         const options = {
-            paginate: 30,
+            paginate: recordsPerPage,
+            page: pageToLoad,
             include: [{
                 model: Product,
-                attributes: ['nome','marca'],
+                attributes: ['nome', 'marca'],
                 required: true,
-                association: Estoque.belongsTo(Product, {foreignKey : 'idProduto'}),
+                association: Estoque.belongsTo(Product, { foreignKey: 'idProduto' }),
                 //on: Sequelize.col('products.id')
             }],
         }
-        const productsEstoque = await Estoque.paginate(options);
-
-        return res.json(productsEstoque);
+        const productsEstoque = await Estoque.paginate(options)
+            .then((productsEstoque) => { return res.json(productsEstoque) })
+            .catch((err) => {
+                return res.status(400).json({
+                    errorMsg: 'Requisicao invalida: ' + msgError
+                });
+            }
+            );
+        
     },
 
     async store(req, res) {

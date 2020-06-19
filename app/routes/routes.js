@@ -17,7 +17,7 @@ routes.post('/auth', UserController.auth); //Basic authentication
 routes.get('/product', ProductController.index); //Listar todos
 routes.post('/product', ProductController.store); //Criar
 
-routes.get('/estoque', EstoqueController.index); //Listar todos
+routes.get('/estoque/:recordsPerPage/page/:page',  validateToken, EstoqueController.index); //Listar todos
 
 
 module.exports = routes;
