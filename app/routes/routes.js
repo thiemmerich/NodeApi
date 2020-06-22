@@ -5,6 +5,7 @@ const validateToken = require('../../config/util').validateToken;
 const UserController = require('../controller/UserController');
 const ProductController = require('../controller/ProductController');
 const EstoqueController = require('../controller/EstoqueController');
+const MovimentacaoController = require('../controller/MovimentacaoController');
 
 // Rotas de usuario
 routes.get('/user/:id', validateToken, UserController.show); //Buscar
@@ -17,7 +18,10 @@ routes.post('/auth', UserController.auth); //Basic authentication
 routes.get('/product', ProductController.index); //Listar todos
 routes.post('/product', ProductController.store); //Criar
 
-routes.get('/estoque/:recordsPerPage/page/:page',  validateToken, EstoqueController.index); //Listar todos
+routes.get('/estoque/:recordsPerPage/page/:page',  EstoqueController.index); //Listar todos
 
+//Movimentacao
+routes.get('/movimentacao/:recordsPerPage/page/:page', MovimentacaoController.relatorio); //Listar todos
+routes.post('/product/:movimentacao', MovimentacaoController.novaMovimentacao); //Criar
 
 module.exports = routes;
