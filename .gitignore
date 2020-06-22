@@ -1,2 +1,4 @@
 node_modules
 .directory
+config/database.js
+config\database.js

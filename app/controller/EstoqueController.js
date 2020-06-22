@@ -1,5 +1,6 @@
+const { Estoque } = require('../models');
 const { Product } = require('../models');
-const { Op } = require('sequelize');
+const { Sequelize } = require('sequelize')
 
 module.exports = {
     async index(req, res) {
@@ -8,45 +9,34 @@ module.exports = {
         let pageToLoad = parseInt(req.params.page);
         let msgError = (isNaN(recordsPerPage) ? 'Registros por pagina=' + recordsPerPage : '')
             + (isNaN(pageToLoad) ? 'Pagina=' + pageToLoad : '');
-
         const options = {
             paginate: recordsPerPage,
-            page: pageToLoad
+            page: pageToLoad,
+            include: [{
+                model: Product,
+                attributes: ['nome', 'marca'],
+                required: true,
+                association: Estoque.belongsTo(Product, { foreignKey: 'idProduto' }),
+                //on: Sequelize.col('products.id')
+            }],
         }
-        const products = await Product.paginate(options)
-            .then(products => {
-                return res.json(products);
-            })
+        const productsEstoque = await Estoque.paginate(options)
+            .then((productsEstoque) => { return res.json(productsEstoque) })
             .catch((err) => {
                 return res.status(400).json({
                     errorMsg: 'Requisicao invalida: ' + msgError
                 });
-            });
+            }
+            );
+        
     },
 
     async store(req, res) {
-        const product = await Product.create(req.body)
+        const productsEstoque = await Estoque.create(req.body)
             .catch((err) => {
                 return res.status(400).json({ errorMsg: 'Erro ao gravar na base de dados: ' + err });
             });
 
         return res.json(product);
-    },
-
-    async searchLike(req, res) {
-        await Product.findAll({
-            where: {
-                nome: {
-                    [Op.like]: '%' + req.params.nome + '%'
-                }
-            }
-        })
-            .then((products) => {
-                return res.json(products);
-            })
-
-            .catch((err) => {
-                return res.status(400).json({ errorMsg: 'Erro ao gravar na base de dados: ' + err });
-            });
     }
 }
