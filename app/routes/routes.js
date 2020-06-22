@@ -16,7 +16,8 @@ routes.post('/auth', UserController.auth); //Basic authentication
 
 // Rotas de produtos
 routes.get('/product/:recordsPerPage/page/:page', ProductController.index); //Listar todos
-routes.get('/product/:nome', ProductController.searchLike); //Criar
+routes.get('/product/:nome', ProductController.searchLike); //Pegar pelo nome
+routes.get('/product/:codigo', ProductController.searchByCode); //Pegar pelo nome
 routes.post('/product', ProductController.store); //Criar
 
 routes.get('/estoque/:recordsPerPage/page/:page',  EstoqueController.index); //Listar todos

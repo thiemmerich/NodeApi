@@ -48,5 +48,20 @@ module.exports = {
             .catch((err) => {
                 return res.status(400).json({ errorMsg: 'Erro ao gravar na base de dados: ' + err });
             });
+    },
+
+    async searchByCode(req, res) {
+        await Product.findAll({
+            where: {
+                codigo: req.params.codigo
+            }
+        })
+            .then((products) => {
+                return res.json(products);
+            })
+
+            .catch((err) => {
+                return res.status(400).json({ errorMsg: 'Erro ao gravar na base de dados: ' + err });
+            });
     }
 }

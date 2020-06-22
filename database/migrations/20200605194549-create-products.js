@@ -9,6 +9,10 @@ module.exports = {
         primaryKey: true,
         type: DataTypes.INTEGER,
       },
+      codigo: {
+        allowNull: false,
+        type: DataTypes.INTEGER,
+      },
       nome: {
         allowNull: false,
         type: DataTypes.STRING,
