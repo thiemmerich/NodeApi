@@ -34,7 +34,7 @@ module.exports = {
     },
 
     async searchLike(req, res) {
-        const product = await Product.findAll({
+        await Product.findAll({
             where: {
                 nome: {
                     [Op.like]: '%' + req.params.nome + '%'
