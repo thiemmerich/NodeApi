@@ -1,8 +1,8 @@
 module.exports = {
-  username: 'contasDesenv',
-  password: 'BzBra',
+  username: 'bc33814315d369',
+  password: 'b43598cc',
   database: 'node_cadastro',
-  host: 'localhost',
+  host: 'us-cdbr-east-05.cleardb.net',
   dialect: 'mysql',
   logging: (msg) => console.log(msg)
 }
