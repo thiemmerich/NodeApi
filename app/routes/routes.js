@@ -23,6 +23,7 @@ routes.get('/estoque/:recordsPerPage/page/:page',  EstoqueController.index); //L
 
 //Movimentacao
 routes.get('/movimentacao/:recordsPerPage/page/:page', MovimentacaoController.relatorio); //Listar todos
-routes.post('/product/:movimentacao', MovimentacaoController.novaMovimentacao); //Criar
+//movimentacao{idProduto,tamanho,quantidade,valor,tipo,devolucao,usuario}
+routes.post('/movimentacao/', MovimentacaoController.novaMovimentacao); //Criar
 
 module.exports = routes;

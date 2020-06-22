@@ -5,7 +5,7 @@ const { Product } = require('../models');
 module.exports = (sequelize, DataTypes) => {
     const Estoque = sequelize.define('Estoque', {
         idProduto:{
-            type: DataTypes.STRING,
+            type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true
         },

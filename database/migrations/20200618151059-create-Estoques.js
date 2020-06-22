@@ -4,7 +4,7 @@ module.exports = {
   up: (queryInterface, DataTypes) => {
     return queryInterface.createTable('Estoques', {
       idProduto: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true
       },
