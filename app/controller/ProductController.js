@@ -25,12 +25,12 @@ module.exports = {
     },
 
     async store(req, res) {
-        const product = await Product.create(req.body)
+        const product = await Product.upsert(req.body)
             .catch((err) => {
                 return res.status(400).json({ errorMsg: 'Erro ao gravar na base de dados: ' + err });
             });
 
-        return res.json(product);
+        return res.status(200).json(product.dataValues);
     },
 
     async searchLike(req, res) {

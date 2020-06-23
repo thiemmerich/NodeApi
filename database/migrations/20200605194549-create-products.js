@@ -20,7 +20,6 @@ module.exports = {
       descricao: {
         allowNull: false,
         type: DataTypes.STRING,
-        unique: true,
       },
       tamanho: {
         allowNull: false,
