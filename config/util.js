@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 
-const expireTime = 300;
+const expireTime = 18000;
 
 module.exports = {
     validateToken: (req, res, next) => {
