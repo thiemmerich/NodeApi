@@ -25,7 +25,11 @@ module.exports = {
                 next();
             } catch (err) {
                 // Throw an error just in case anything goes wrong with verification
-                throw new Error(err);
+                result = {
+                    error: 'Unable to authenticate',
+                    status: 401
+                };
+                res.status(401).send(result);
             }
         } else {
             result = {
@@ -37,7 +41,7 @@ module.exports = {
     },
 
     generateToken: (req, res, user) => {
-        
+
         const result = {};
 
         const payload = { user: user.name };
