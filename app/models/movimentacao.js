@@ -3,26 +3,14 @@ const sequelizePaginate = require('sequelize-paginate');
 
 module.exports = (sequelize, DataTypes) => {
     const Movimentacao = sequelize.define('Movimentacao', {
-        id: {
+        idMovimentacao: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true,
         },
-        idProduto:{
+        idPedido:{
             type: DataTypes.STRING,
             allowNull: false,           
-        },
-        tamanho: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        quantidade: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-        },
-        quantidadeAnterior: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
         },
         valor: {
             type: DataTypes.DOUBLE,
@@ -37,6 +25,14 @@ module.exports = (sequelize, DataTypes) => {
         },
         devolucao: {
             type: DataTypes.BOOLEAN,
+        },
+        quantidade: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        },
+        quantidadeAnterior: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
         },
         usuario:{
             type: DataTypes.INTEGER,

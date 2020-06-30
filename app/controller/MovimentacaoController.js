@@ -49,6 +49,8 @@ module.exports = {
         var quantidadeAnterior = 0;
         var posicaoEstoque = null;
 
+
+
         await Estoque.findAll({
             attributes: ['quantidade'],
             where: {

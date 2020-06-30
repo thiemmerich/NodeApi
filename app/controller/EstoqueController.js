@@ -28,15 +28,26 @@ module.exports = {
                 });
             }
             );
-        
+
     },
 
     async store(req, res) {
         const productsEstoque = await Estoque.create(req.body)
+            .then((product) => {
+                return res.json(product);
+            })
             .catch((err) => {
                 return res.status(400).json({ errorMsg: 'Erro ao gravar na base de dados: ' + err });
             });
+    },
 
-        return res.json(product);
+    async getQuantidadeEstoque(req, res) {
+        await Estoque.findByPk(req.params.id)
+        .then(() => {
+
+        })
+        .catch(() => {
+            
+        });
     }
 }
