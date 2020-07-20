@@ -31,6 +31,6 @@ routes.post('/movimentacao/', validateToken, MovimentacaoController.novaMoviment
 
 // Pedidos
 routes.get('/pedido/:id', validateToken, PedidoController.show); //Buscar
-routes.post('/pedido', PedidoController.gravarNovoPedido); //Salvar
+routes.post('/pedido', validateToken, PedidoController.gravarNovoPedido); //Salvar
 
 module.exports = routes;
