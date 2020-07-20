@@ -30,7 +30,7 @@ routes.get('/movimentacao/:recordsPerPage/page/:page', validateToken, Movimentac
 routes.post('/movimentacao/', validateToken, MovimentacaoController.novaMovimentacao); //Criar
 
 // Pedidos
-routes.get('/pedido/:id', PedidoController.show); //Buscar
-routes.post('/pedido', PedidoController.gravarNovoPedido); //Buscar
+routes.get('/pedido/:id', validateToken, PedidoController.show); //Buscar
+routes.post('/pedido', PedidoController.gravarNovoPedido); //Salvar
 
 module.exports = routes;
